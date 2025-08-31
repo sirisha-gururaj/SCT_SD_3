@@ -1,0 +1,82 @@
+/* --- Body and Background Styling --- */
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    
+    /* --- IMPLEMENTATION FOR YOUR LOCAL BACKGROUND IMAGE --- */
+    
+    /* 1. This loads your local image file. Make sure it's named 'sudoku-bg.jpg' */
+    /* and is in the same folder as your HTML file. */
+    background-image: 
+        /* This adds a soft, semi-transparent white gradient over your image. */
+        /* It makes the Sudoku board on top much easier to read. */
+        linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+        url('sudoku-bg.png');
+    
+    /* 2. These properties ensure your image always fills the screen without stretching. */
+    background-size: 100%;
+    background-position: center 10%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+
+/* Style for the Sudoku grid cells */
+.sudoku-cell {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    border: 1px solid #d1d5db; /* gray-300 */
+    background-color: #ffffff;
+    color: #1f2937; /* gray-800 */
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    -moz-appearance: textfield; /* Firefox */
+}
+
+/* Hide arrows on number inputs */
+.sudoku-cell::-webkit-outer-spin-button,
+.sudoku-cell::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.sudoku-cell:focus {
+    outline: none;
+    background-color: #eff6ff; /* blue-50 */
+    border-color: #3b82f6; /* blue-500 */
+}
+/* Style for the pre-filled, initial puzzle numbers */
+.sudoku-cell.initial {
+    background-color: #f3f4f6; /* gray-100 */
+    color: #111827; /* gray-900 */
+    font-weight: 600;
+}
+/* Style for numbers added by the solver */
+.sudoku-cell.solved {
+    color: #2563eb; /* blue-600 */
+    font-weight: 600;
+    animation: pop-in 0.3s ease-out;
+}
+
+/* --- CORRECTED Thicker borders for the 3x3 subgrids --- */
+/* Outer grid borders */
+.cell-row-1 { border-top-width: 3px; border-top-color: #4b5563; }
+.cell-col-1 { border-left-width: 3px; border-left-color: #4b5563; }
+.cell-row-9 { border-bottom-width: 3px; border-bottom-color: #4b5563; }
+.cell-col-9 { border-right-width: 3px; border-right-color: #4b5563; }
+
+/* Inner subgrid borders */
+.cell-row-3, .cell-row-6 { border-bottom-width: 3px; border-bottom-color: #4b5563; }
+.cell-col-3, .cell-col-6 { border-right-width: 3px; border-right-color: #4b5563; }
+
+
+@keyframes pop-in {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
